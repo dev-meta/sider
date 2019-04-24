@@ -1,0 +1,10 @@
+.App{
+  height: 100%;
+  display: flex;
+  // overflow: hidden;
+  .content{
+    flex: 1;
+    background: #f5f5d5;
+  }
+  
+}

@@ -1,0 +1,114 @@
+.bar-content{
+    position: relative;
+    width: 60px;
+    // overflow: hidden;
+    background: #eee;
+    transition: width .45s;
+    .bar-list{
+        width: 60px;
+        position: absolute;
+        right: 0;
+        .bar-icon{
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+            background: lime;
+            line-height: 60px;
+            text-align: center;
+        }
+    }
+    .out-box{
+        position: absolute;
+        // right: 0;
+        transition: left 0.45s ease-in-out;
+        // transition-duration: .45s;
+        top: 0;
+        left: 60px;
+        z-index: 1;
+        // visibility: hidden;
+        background: yellow;
+        height: 100%;
+        width: 200px;
+        // transition-property: transform,visibility;
+        // transform: translate3d(100%, 0, 0);
+        // transform: translate3d(200px, 0, 0);
+        .close {
+            font-weight: 900;
+            font-size: 30px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: red;
+            cursor: pointer;
+        }
+    }
+    .animation{
+        // z-index: 3;
+        // visibility: visible;
+        // transform: translateZ(100px);
+
+        left: -200px;
+    }
+}
+
+// .bar-content {
+//     position: relative;
+//     width: 60px;
+//     transition: width .45s;
+//     overflow: hidden;
+//     background: #eee;
+
+//     .bar-list {
+//         width: 60px;
+//         position: absolute;
+//         right: 0;
+//         .bar-icon {
+//             width: 60px;
+//             height: 60px;
+//             margin-bottom: 10px;
+//             background: lime;
+//             line-height: 60px;
+//             text-align: center;
+//         }
+//     }
+
+//     .out-box {
+//         position: absolute;
+//         right: 72px;
+//         // transition: left 0.3s ease-out;
+//         transition-duration: .45s;
+//         top: 0;
+//         // left: 60px;
+//         z-index: 1;
+//         visibility: hidden;
+//         background: yellow;
+//         height: 100%;
+//         width: 200px;
+//         transition-property: transform,visibility;
+//         // transform: translate3d(100%, 0, 0);
+//         // transform: translate3d(260px, 0, 0);
+//         transform: translateX(272px);
+//         .close{
+//             font-weight: 900;
+//             font-size: 30px;
+//             width: 40px;
+//             height: 40px;
+//             line-height: 40px;
+//             text-align: center;
+//             background: red;
+//             cursor: pointer;
+//         }
+//     }
+
+//     .animation {
+//         // z-index: 3;
+//         visibility: visible;
+//         transform: translateX(0);
+
+//         // left: -200px;
+//     }
+// }
+.bar-content-open{
+    // width: 272px;
+}
