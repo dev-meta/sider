@@ -18,21 +18,20 @@ class Sider extends Component {
                     desc: '这是连麦'
                 }
             ],
+            top: "0px",
             content: ''
 
         }
     }
 
-    handelClick = (desc)=>{
-        // this.setState((state,props)=>({
-        //     addAnimation: !state.addAnimation
-        // }))
-        // this.setState({
-        //     addAnimation: !this.state.addAnimation
-        // })
+    handelClick = (e,desc)=>{
+        // e.persist()
+        const target = e.target;
+        console.log(target.offsetTop)
         this.setState({
             addAnimation: true,
-            content: desc
+            content: desc,
+            top: target.offsetTop+23+'px'
         })
     }
     handleClose = ()=>{
@@ -61,7 +60,7 @@ class Sider extends Component {
                     {
                         this.state.barList.map((item)=>{
                             return (
-                                <div onClick={()=>this.handelClick(item.desc)} key={item.role} className='bar-icon'>
+                                <div onClick={(e)=>this.handelClick(e,item.desc)} key={item.role} className='bar-icon'>
                                     {item.text}
                                 </div>
                             )
@@ -70,6 +69,7 @@ class Sider extends Component {
                 </div>
                 <div className={ this.state.addAnimation?'out-box animation': 'out-box'}>
                     <div onClick={this.handleClose} className="close">X</div>
+                    <div style={{top: this.state.top}} className='triangle'></div>
                     {
                         this.state.content
                     }
