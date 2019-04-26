@@ -4,13 +4,60 @@ import './index.scss'
 class Sider extends Component {
     constructor(props) {
         super(props);
-        this.state = {  
+        this.state = {
             addAnimation: false,
             barList: [
                 {
                     role: 'material',
                     text: '教材',
-                    desc: '这是教材'
+                    desc: '这是教材',
+                    content: [
+                        {
+                            type: "book",
+                            title: '教材',
+                            background: 'red',
+                            list: [
+                                {
+                                    name: '听力',
+                                    url: 'www.baidu.com'
+                                },
+                                {
+                                    name: '口语',
+                                    url: 'www.google.com'
+                                }
+                            ]
+                        },
+                        {
+                            type: "video",
+                            title: '视频',
+                            background: 'skyblue',
+                            list: [
+                                {
+                                    name: '听力第三课.mp4',
+                                    url: 'three.mp4'
+                                },
+                                {
+                                    name: '听力第四课.mp4',
+                                    url: 'four.mp4'
+                                }
+                            ]
+                        },
+                        {
+                            type: 'audio',
+                            title: '音频',
+                            background: 'green',
+                            list: [
+                                {
+                                    name: '口语第一课.mp3',
+                                    url: 'one.mp3'
+                                },
+                                {
+                                    name: '口语第二课.pm3',
+                                    url: 'two.mp3'
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     role: 'microphone',
@@ -19,27 +66,27 @@ class Sider extends Component {
                 }
             ],
             top: "0px",
-            content: ''
+            item: ''
 
         }
     }
 
-    handelClick = (e,desc)=>{
+    handelClick = (e, item) => {
         // e.persist()
         const target = e.target;
         console.log(target.offsetTop)
         this.setState({
             addAnimation: true,
-            content: desc,
-            top: target.offsetTop+23+'px'
+            item: item,
+            top: target.offsetTop + 23 + 'px'
         })
     }
-    handleClose = ()=>{
+    handleClose = () => {
         this.setState({
             addAnimation: false
         })
     }
-    componentDidMount(){
+    componentDidMount() {
         let temp = [
             {
                 role: 'game',
@@ -48,35 +95,69 @@ class Sider extends Component {
             }
         ]
         setTimeout(() => {
-            this.setState((state)=>({
+            this.setState((state) => ({
                 barList: state.barList.concat(temp)
             }))
         }, 3000);
     }
-    render() { 
-        return (  
-            <div className={this.state.addAnimation?'bar-content bar-content-open':'bar-content'}>
+    render() {
+        return (
+            <div className={this.state.addAnimation ? 'bar-content bar-content-open' : 'bar-content'}>
                 <div className="bar-list">
                     {
-                        this.state.barList.map((item)=>{
+                        this.state.barList.map((item) => {
                             return (
-                                <div onClick={(e)=>this.handelClick(e,item.desc)} key={item.role} className='bar-icon'>
+                                <div onClick={(e) => this.handelClick(e, item)} key={item.role} className='bar-icon'>
                                     {item.text}
                                 </div>
                             )
                         })
                     }
                 </div>
-                <div className={ this.state.addAnimation?'out-box animation': 'out-box'}>
+                <div className={this.state.addAnimation ? 'out-box animation' : 'out-box'}>
                     <div onClick={this.handleClose} className="close">X</div>
-                    <div style={{top: this.state.top}} className='triangle'></div>
+                    <div style={{ top: this.state.top }} className='triangle'></div>
                     {
-                        this.state.content
+                        this.state.item.role === 'material' ? (
+                            this.state.item.content.map((element) => {
+                                return (
+                                    // element.type === 'book' ? (
+                                    <React.Fragment key={element.type}>
+                                        <div className='item-title'>{element.title}</div>
+                                        {
+
+                                            element.list.map((ele) => {
+                                                return (
+                                                    <div className='item' key={ele.url}>
+                                                        <span onClick={()=>{console.log(ele.url)}} style={{ background: `${element.background}` }} className="pic"></span>
+                                                        <span className="item-name">{ele.name}</span>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                    </React.Fragment>
+                                    // ) : (
+                                    //     element.type === 'audio' ? (
+                                    //         element.list.map(ele=>{
+                                    //             return (
+                                    //                 <div>{ele.name}</div>
+                                    //             )
+                                    //         })
+                                    //     ) : element.list.map(ele=>{
+                                    //         return (
+                                    //             <div>{ele.name}</div>
+                                    //         )
+                                    //     })
+                                    // ) 
+
+                                )
+                            })
+                        ) : this.state.item.desc
                     }
                 </div>
             </div>
         );
     }
 }
- 
+
 export default Sider;
