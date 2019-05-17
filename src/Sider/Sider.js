@@ -73,6 +73,7 @@ class Sider extends Component {
 
     handelClick = (e, item) => {
         // e.persist()
+        e.stopPropagation()
         const target = e.target;
         console.log(target.offsetTop)
         this.setState({
@@ -100,10 +101,14 @@ class Sider extends Component {
             }))
         }, 3000);
     }
+    father = ()=>{
+        console.log("father")
+    }
     render() {
         return (
-            <div className={this.state.addAnimation ? 'bar-content bar-content-open' : 'bar-content'}>
-                <div className="bar-list">
+            <div id='#box' className={this.state.addAnimation ? 'bar-content bar-content-open' : 'bar-content'}>
+                <div>{this.props.age}</div>
+                <div onClick={this.father} className="bar-list">
                     {
                         this.state.barList.map((item) => {
                             return (
@@ -117,43 +122,31 @@ class Sider extends Component {
                 <div className={this.state.addAnimation ? 'out-box animation' : 'out-box'}>
                     <div onClick={this.handleClose} className="close">X</div>
                     <div style={{ top: this.state.top }} className='triangle'></div>
-                    {
-                        this.state.item.role === 'material' ? (
-                            this.state.item.content.map((element) => {
-                                return (
-                                    // element.type === 'book' ? (
-                                    <React.Fragment key={element.type}>
-                                        <div className='item-title'>{element.title}</div>
-                                        {
+                    <div className="list-content">
+                        {
+                            this.state.item.role === 'material' ? (
+                                this.state.item.content.map((element) => {
+                                    return (
+                                        // element.type === 'book' ? (
+                                        <React.Fragment key={element.type}>
+                                            <div className='item-title'>{element.title}</div>
+                                            {
 
-                                            element.list.map((ele) => {
-                                                return (
-                                                    <div className='item' key={ele.url}>
-                                                        <span onClick={()=>{console.log(ele.url)}} style={{ background: `${element.background}` }} className="pic"></span>
-                                                        <span className="item-name">{ele.name}</span>
-                                                    </div>
-                                                )
-                                            })
-                                        }
-                                    </React.Fragment>
-                                    // ) : (
-                                    //     element.type === 'audio' ? (
-                                    //         element.list.map(ele=>{
-                                    //             return (
-                                    //                 <div>{ele.name}</div>
-                                    //             )
-                                    //         })
-                                    //     ) : element.list.map(ele=>{
-                                    //         return (
-                                    //             <div>{ele.name}</div>
-                                    //         )
-                                    //     })
-                                    // ) 
-
-                                )
-                            })
-                        ) : this.state.item.desc
-                    }
+                                                element.list.map((ele) => {
+                                                    return (
+                                                        <div className='item' key={ele.url}>
+                                                            <span onClick={()=>{console.log(ele.url)}} style={{ background: `${element.background}` }} className="pic"></span>
+                                                            <span className="item-name">{ele.name}</span>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </React.Fragment>
+                                    )
+                                })
+                            ) : this.state.item.desc
+                        }
+                    </div>
                 </div>
             </div>
         );

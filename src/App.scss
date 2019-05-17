@@ -3,8 +3,20 @@
   display: flex;
   // overflow: hidden;
   .content{
+    position: relative;
     flex: 1;
     background: #f5f5d5;
+    .container{
+      position: absolute;
+      top: 0;
+      left: 0;
+      .source{
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: red;
+      }
+    }
   }
   
 }

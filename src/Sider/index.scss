@@ -92,8 +92,6 @@
         font-size: 12px;
         color: #fff;
         // box-sizing: border-box;
-        padding: 20px;
-        overflow-y: auto;
         .close{
             position: absolute;
             right: 10px;
@@ -117,23 +115,30 @@
             border-top: 7px solid transparent;
             border-bottom: 7px solid transparent;
         }
-        .item-title{
-            line-height: 20px;
-            margin-bottom: 10px;
-        }
-        .item{
-            // padding-bottom: 14px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,.1);
-            .pic{
-                width: 30px;
-                height: 35px;
-                display: inline-block;
-            }
-            .item-name{
-                display: inline-block;
-                height: 40px;
+        .list-content{
+            padding: 20px;
+            overflow-y: auto;
+            height: 100%;
+            .item-title{
                 line-height: 20px;
+                margin-bottom: 10px;
+            }
+            .item{
+                padding-bottom: 14px;
+                margin-bottom: 10px;
+                border-bottom: 1px solid rgba(255,255,255,.1);
+                .pic{
+                    width: 30px;
+                    height: 35px;
+                    margin-right: 10px;
+                    vertical-align: bottom;
+                    display: inline-block;
+                }
+                .item-name{
+                    display: inline-block;
+                    height: 40px;
+                    line-height: 20px;
+                }
             }
         }
     }
